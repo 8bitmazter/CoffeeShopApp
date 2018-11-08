@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "RegistrationPage";
+}
+
+<h2>Registration Page</h2>
+
+<form action="/Home/WelcomeUser" method="post">
+    <label class="control-label">First Name</label> <input type="text" name="FirstName" class="form-control" placeholder="John" />
+    <label class="control-label">Last Name</label> <input type="text" name="LastName" class="form-control" placeholder="Smith" />
+    <label class="control-label">E-Mail</label> <input type="email" name="Email" class="form-control" placeholder="JohnSmith@Hotmail.com" />
+    <label class="control-label">Phone Number</label> <input type="tel" name="Phone" class="form-control" placeholder="5555555555" />
+    <label class="control-label">Password</label> <input type="password" name="Password" class="form-control" />
+    <p></p>
+    <input type="submit" value="Submit" class="btn-primary" />
+
+</form>
