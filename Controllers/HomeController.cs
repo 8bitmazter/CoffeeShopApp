@@ -45,5 +45,22 @@ namespace CoffeeShopApp.Controllers
                 return View("Error"); //So it goes to the Error page fine but it won't go to the confirm page.
             }
         }
-    }
+        public ActionResult ShoppingList(Item itemName)
+        {
+
+        }
+        public ActionResult ShoppingList()
+        {
+            return View();
+        }
+        public ActionResult AddUser(User userInfo)
+        {
+            CoffeeShopDBEntities dataBase = new CoffeeShopDBEntities();
+            dataBase.Users.Add(userInfo); //Not sure why it's Users instead of the class name User
+            dataBase.SaveChanges();
+            ViewBag.UserAdded = "Welcome to the Coffee Jungle";
+            return View("WelcomeUser");
+
+        }
+}
 }
