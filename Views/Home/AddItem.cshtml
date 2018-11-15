@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "AddItem";
+}
+
+<h2>Add Items</h2>
+
+<form action="/Home/AddItem" method="post">
+    <div class="flex-container">
+        <label class="control-label">Name of Item </label><input type="text" name="Name" class="form-control" id="Name" required />
+    </div>
+    <div class="flex-container">
+        <label class="control-label">Description of Item </label><input type="text" name="Description" class="form-control" id="Description" required />
+    </div>
+    <div class="flex-container">
+        <label class="control-label">Quantity </label><input type="number" name="Quantity" class="form-control" id="Quantity" required />
+    </div>
+    <div class="flex-container">
+        <label class="control-label">Price </label><input type="number" pattern="^\d+.\d\d$" name="Price" class="form-control" id="Price" required />
+    </div>
+    <div>
+        <input type="submit" value="Submit" class="btn-primary" />
+    </div>
+</form>
+<h1>@ViewBag.AddedItem</h1>

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "AdminPage";
+}
+
+<h2>AdminPage</h2>
+
+@{ 
+    foreach (var Item in ViewBag.List)
+    {
+        <ol>
+            <li>ViewBag.List(Item.Name)</li>
+            <li>Item.Name</li>
+            <li>Item.Description</li>
+            <li>Item.Quantity</li>
+            <li>Item.Price</li>
+        </ol>
+
+        <a href="~/Views/Home/AddItem.cshtml">Add Item</a>
+    }
+}

@@ -9,6 +9,7 @@ namespace CoffeeShopApp.Controllers
 {
     public class HomeController : Controller
     {
+        private CoffeeShopDBEntities Caffine = new CoffeeShopDBEntities();
         public ActionResult Index()
         {
             return View();
@@ -47,20 +48,56 @@ namespace CoffeeShopApp.Controllers
         }
         public ActionResult ShoppingList(Item itemName)
         {
-
-        }
-        public ActionResult ShoppingList()
-        {
+            ViewBag.list = Caffine.Items.ToList<Item>();
             return View();
         }
+        //public ActionResult ShoppingList()
+        //{
+        //    return View();
+        //}
         public ActionResult AddUser(User userInfo)
         {
             CoffeeShopDBEntities dataBase = new CoffeeShopDBEntities();
             dataBase.Users.Add(userInfo); //Not sure why it's Users instead of the class name User
-            dataBase.SaveChanges();
             ViewBag.UserAdded = "Welcome to the Coffee Jungle";
+            dataBase.SaveChanges(); //This does not work. Don't know why and it's making me rage. A LOT.
             return View("WelcomeUser");
 
         }
-}
+
+        public ActionResult AdminPage(Item itemName)
+        {
+            ViewBag.list = Caffine.Items.ToList<Item>();
+
+            return View();
+        }
+        public ActionResult AddingItems(Item item)
+        {
+            Caffine.Items.Add(item);
+            Caffine.SaveChanges();
+            ViewBag.AddedItem = "Thank You for Adding an Item";
+
+            return View("AddItem");
+        }
+        public ActionResult Edit(string id)
+        {
+            Item item = Caffine.Items.Find(id);
+            Caffine.SaveChanges();
+            return View("ShoppingList");
+        }
+        [HttpPost]
+        public ActionResult Edit(Item item)
+        {
+            Caffine.Entry(Caffine.Items.Find(item.Name)).CurrentValues.SetValues(item);
+            Caffine.SaveChanges();
+            return RedirectToAction("ShoppingList");
+        }
+        public ActionResult Delete(string id)
+        {
+            Item item = Caffine.Items.Find(id);
+            Caffine.Items.Remove(item);
+            Caffine.SaveChanges();
+            return RedirectToAction("ShoppingList");
+        }
+    }
 }

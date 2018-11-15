@@ -4,4 +4,24 @@
 }
 
 <h2>ShoppingList</h2>
+@Html.ActionLink("Add Item", "AddItem")
+@{ 
+    if (ViewBag.list != null)
+    {
+        int i = 0;
+        foreach (var item in ViewBag.list)
+        {
+            i++;
+            <p>@i</p>
+        <ol>
+            <li>@item.Name</li>
+            <li>@item.Description</li>
+            <li>@item.Quantity</li>
+            <li>@item.Price</li>
+        </ol>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Name })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Name})
+            }
+        }
+    }
 
